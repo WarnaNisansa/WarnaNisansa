@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Meyawo landing page.">
+    <meta name="author" content="Asini">
+    <title>Contact</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+	<link rel="stylesheet" href="css/stylesheet.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- contact section -->
+    <section class="section" id="contact">
+        <div class="container text-center">
+            <p class="section-subtitle">How can you communicate?</p>
+            <h6 class="section-title mb-5">Contact Me</h6>
+            <p><b>Email: asiniwarnasooriya@gmail.com</b></p>
+            <p><b> Tel No: +94 702 689 148</b></p>
+            <!-- contact form -->
+            <form name="submit-to-google-sheet" class="contact-form col-md-10 col-lg-8 m-auto">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <input type="text" name = "Name" size="50" class="form-control" placeholder="Your Name" required>                 
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input type="email" name = "Email" class="form-control" placeholder="Enter Email"requried>                 
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <textarea name="comment" id="comment" rows="6"   class="form-control" placeholder="Write Something"></textarea>
+                    </div>
+                    <div class="form-group col-sm-12 mt-3">
+                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">                  
+                    </div>
+                </div>  
+            </form><!-- end of contact form -->
+            <span id="msg"></span>
+
+        
+        </div><!-- end of container -->
+    </section><!-- end of contact section -->
+      <!-- footer -->
+    <div class="container">
+        <footer class="footer">       
+            <p class="mb-0">Copyright Reserved <script>document.write(new Date().getFullYear())</script> &copy; <a href="">Asini Warnasooriya</a></p>
+            <div class="social-links text-right m-auto ml-sm-auto">
+                <a href="https://www.facebook.com/asini.nisansa" class="link"><i class="ti-facebook"></i></a>
+               
+                
+                <a href="https://www.linkedin.com/in/asini-warnasooriya-bb4996223/" class="link"><i class="ti-linkedin"></i></a>
+               
+                
+                <a href="https://www.instagram.com/asiniii_n/" class="link"><i class="ti-instagram"></i></a>
+               
+               
+            </div>
+        </footer>
+    </div> <!-- end of page footer -->
+	
+	<!-- core  -->
+    <script src="jquery/jquery-3.4.1.js"></script>
+    <script src="bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+	<script src="bootstrap/bootstrap.affix.js"></script>
+
+    <!-- js -->
+    <script src="js/style.js"></script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxRuorqPQHo5GCFNDv6Eep-H8CCPWQMnHuxvJG3Phnx56gUYpYCauJTZIPzDBKAfuW5/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Message sent successfully!"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+</body>
+</html>
